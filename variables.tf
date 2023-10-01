@@ -11,3 +11,8 @@ variable "myLABVPC" {
 variable "myLABPublicSN" {
   
 }
+
+
+variable "mylabkey" {
+  
+}
