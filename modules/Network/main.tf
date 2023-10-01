@@ -68,6 +68,36 @@ resource "aws_route_table_association" "private_route_assoc" {
   route_table_id = aws_route_table.private_route_table.id
 }
 
+resource "aws_security_group" "sg-ep" {
+  vpc_id      = aws_vpc.my_vpc.id
+
+  ingress {
+    description      = "Allow all"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "VPCep-sg"
+  }
+  
+}
+
+resource "aws_ec2_instance_connect_endpoint" "example" {
+  subnet_id        = aws_subnet.private_subnet.id
+  security_group_ids = [aws_security_group.sg-ep.id]
+  preserve_client_ip  = false
+}
+
 output "subnetid" {
   value = aws_subnet.private_subnet.id
 }

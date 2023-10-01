@@ -5,7 +5,7 @@ variable "k8labkey" {
 }
 
 variable "k8slabinstancetype" {
-  default = "t2.micro"
+  default = "t2.large"
 }
 
 variable "k8labsubnetID" {
