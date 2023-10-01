@@ -13,6 +13,19 @@ module "k8labcompute-masternode" {
   k8labsubnetID = local.labprivatesubnet
 }
 
+module "k8labcompute-node1" {
+  source = "./modules/Compute"
+  k8labkey = var.mylabkey
+  k8labsubnetID = local.labprivatesubnet
+}
+
+
+module "k8labcompute-node2" {
+  source = "./modules/Compute"
+  k8labkey = var.mylabkey
+  k8labsubnetID = local.labprivatesubnet
+}
+
 locals {
   labprivatesubnet = module.k8slabnetwork.subnetid
 }
